@@ -64,7 +64,7 @@ export class RectWithCoordinates {
     this.origin = origin ? origin : [0, 0];
   }
 
-  getElementCoordinates(
+  transformViewportCoordinates(
     viewportCoordinates: ViewportCoordinates,
     options?: GetElementCoordinatesOptions
   ): RectCoordinates {
