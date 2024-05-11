@@ -1,11 +1,11 @@
 import { getHTMLElementBorders } from "utils";
-import { RectWithCoordinates } from "RectWithCoordinates";
+import { RectData, RectWithCoordinates } from "RectWithCoordinates";
 
 export class HTMLElementWithCoordinates<
   ElementType extends HTMLElement,
 > extends RectWithCoordinates {
   htmlElement: Element;
-  constructor(htmlElement: ElementType) {
+  constructor(htmlElement: ElementType, options?: Pick<RectData, "origin">) {
     const borders = getHTMLElementBorders(htmlElement);
     const elementMeasurements = htmlElement.getBoundingClientRect();
     super({
@@ -14,6 +14,7 @@ export class HTMLElementWithCoordinates<
       width: elementMeasurements.width,
       viewportPositionX: elementMeasurements.left,
       viewportPositionY: elementMeasurements.top,
+      ...options,
     });
     this.htmlElement = htmlElement;
   }
